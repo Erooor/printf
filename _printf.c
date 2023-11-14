@@ -1,59 +1,41 @@
-#include <stdarg.h>
-#include <stdio.h>
 #include "main.h"
-
-#define BUFF_SIZE 1024
-
 /**
- * _printf - copy printf
- * @*format: character string
- * @...: Input value
- *
- * Return: count
+ * _printf - is a function that selects the correct function to print.
+ * @format: identifier to look for.
+ * Return: the length of the string.
  */
-int _printf(const char *format, ...)
+int _printf(const char * const format, ...)
 {
-va_list args;
-int count = 0;
-int printed = 0;
-int buff_ind = 0;
-char buffer[BUFF_SIZE];
+	convert p[] = {
+		{"%s", print_s}, {"%c", print_c},
+		{"%%", print_37},
+		{"%i", print_i}, {"%d", print_d}
+	};
+	va_list args;
+	int i = 0, j, length = 0;
 
-va_start(args, format);
-while (*format)
-{
-if (*format == '%')
-{format++;
-if (*format == '%')
-{buffer[buff_ind++] = '%';
-if (buff_ind == BUFF_SIZE)
-{print_buffer(buffer, &buff_ind);
-count += buff_ind; }}
-else if (*format == 'c')
-{int ch = va_arg(args, int);
-buffer[buff_ind++] = ch;
-if (buff_ind == BUFF_SIZE)
-{print_buffer(buffer, &buff_ind);
-count += buff_ind; }}
-else if (*format == 's')
-{char *str = va_arg(args, char *);
-while (*str)
-{buffer[buff_ind++] = *str;
-str++;
-if (buff_ind == BUFF_SIZE)
-{print_buffer(buffer, &buff_ind);
-count += buff_ind; }}}
-else if (*format == 'd' || *format == 'i')
-{int value = va_arg(args, int);
-printed = print_integer(value);
-count += printed; }}
-else
-{buffer[buff_ind++] = *format;
-if (buff_ind == BUFF_SIZE)
-{print_buffer(buffer, &buff_ind);
-count += buff_ind; }}
-format++; }
-print_buffer(buffer, &buff_ind);
-count += buff_ind;
-va_end(args);
-return (count); }
+	va_start(args, format);
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
+
+Here:
+	while (format[i] != '\0')
+	{
+		j = 13;
+		while (j >= 0)
+		{
+			if (p[j].ph[0] == format[i] && p[j].ph[1] == format[i + 1])
+			{
+				length += p[j].function(args);
+				i = i + 2;
+				goto Here;
+			}
+			j--;
+		}
+		_putchar(format[i]);
+		length++;
+		i++;
+	}
+	va_end(args);
+	return (length);
+}
