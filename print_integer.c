@@ -1,6 +1,8 @@
 #include "main.h"
 #include <stdio.h>
 
+#define BUFF_SIZE 1024
+
 /**
  * print_integer - print the digit value
  * @value: the value passed by _printf

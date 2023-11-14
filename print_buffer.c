@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdio.h>
 
+#define BUFF_SIZE 1024
 /**
  * print_buffer - print the content of the buffer
  * @buffer[]: hold the string to print
