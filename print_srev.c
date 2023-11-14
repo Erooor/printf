@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * print_revs - function that prints a str in reverse
@@ -18,7 +19,6 @@ int print_revs(va_list args)
 	while (s[j] != '\0')
 		j++;
 	for (i = j - 1; i >= 0; i--)
-		_putchar(s[i]);
+		putchar(s[i]);
 	return (j);
 }
-

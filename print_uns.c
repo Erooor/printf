@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 /**
  * print_unsigned - prints integer
  * @args: argument to print
@@ -15,7 +16,7 @@ int print_unsigned(va_list args)
 
 	if (last < 0)
 	{
-		_putchar('-');
+		putchar('-');
 		num = -num;
 		n = -n;
 		last = -last;
@@ -32,13 +33,12 @@ int print_unsigned(va_list args)
 		while (exp > 0)
 		{
 			digit = num / exp;
-			_putchar(digit + '0');
+			putchar(digit + '0');
 			num = num - (digit * exp);
 			exp = exp / 10;
 			i++;
 		}
 	}
-	_putchar(last + '0');
-
+	putchar(last + '0');
 	return (i);
 }

@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * print_bin - prints binary number.
@@ -21,14 +22,14 @@ int print_bin(va_list val)
 		if (flag)
 		{
 			b = p >> (31 - i);
-			_putchar(b + 48);
+			putchar(b + 48);
 			cont++;
 		}
 	}
 	if (cont == 0)
 	{
 		cont++;
-		_putchar('0');
+		putchar('0');
 	}
 	return (cont);
 }
