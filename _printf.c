@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 /**
  * _printf - is a function that selects the correct function to print.
  * @format: identifier to look for.
@@ -8,7 +9,7 @@ int _printf(const char * const format, ...)
 {
 	convert p[] = {
 		{"%s", print_s}, {"%c", print_c},
-		{"%%", print_37},
+		{"%%", print_per},
 		{"%i", print_i}, {"%d", print_d}
 	};
 	va_list args;
@@ -32,7 +33,7 @@ Here:
 			}
 			j--;
 		}
-		_putchar(format[i]);
+		putchar(format[i]);
 		length++;
 		i++;
 	}

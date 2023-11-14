@@ -16,13 +16,12 @@ typedef struct format
 	int (*function)();
 } convert;
 
-int print_%(void);
+int print_per(void);
 int print_c(va_list val);
 int print_s(va_list val);
 int print_i(va_list args);
 int print_d(va_list args);
 int _strlen(char *s);
-int _putchar(char c);
 int _printf(const char *format, ...);
 
 #endif

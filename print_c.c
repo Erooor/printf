@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
  * print_c - prints a character.
  * @val: arguments.
@@ -10,6 +10,6 @@ int print_c(va_list val)
 	char s;
 
 	s = va_arg(val, int);
-	_putchar(s);
+	putchar(s);
 	return (1);
 }
